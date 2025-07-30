@@ -24,14 +24,14 @@ export default function Comment({ comment, onReact }) {
           className={`comment-btn ${comment.reaction === "like" ? "active" : ""}`}
           onClick={() => onReact(comment.id, "like")}
         >
-          👍 Like {comment.likes}
+          Likes {comment.likes}
         </button>
 
         <button
           className={`comment-btn ${comment.reaction === "dislike" ? "active" : ""}`}
           onClick={() => onReact(comment.id, "dislike")}
         >
-          👎 Dislike {comment.dislikes}
+          Dislikes {comment.dislikes}
         </button>
 
         <span className="reply-btn" onClick={toggleReplyBox}>Reply</span>
@@ -46,7 +46,7 @@ export default function Comment({ comment, onReact }) {
             onChange={(e) => setReplyText(e.target.value)}
           />
           <div className="reply-actions">
-            <button className="submit-reply-btn">Submit</button>
+            <button className="reply-reply-btn">Reply</button>
             <button className="cancel-reply-btn" onClick={toggleReplyBox}>Cancel</button>
           </div>
         </div>
