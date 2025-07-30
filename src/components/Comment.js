@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-export default function Comment({ comment }) {
-  const [reaction, setReaction] = useState(null); 
+export default function Comment({ comment, onReact }) {
+  const [showReplyBox, setShowReplyBox] = useState(false);
+  const [replyText, setReplyText] = useState("");
 
-  const handleReaction = (type) => {
-    setReaction(reaction === type ? null : type);
+  const toggleReplyBox = () => {
+    setShowReplyBox(prev => !prev);
+    setReplyText(""); // reset on open/close
   };
 
   return (
@@ -19,21 +21,36 @@ export default function Comment({ comment }) {
 
       <div className="comment-reactions">
         <button
-          className={`comment-btn ${reaction === "like" ? "active" : ""}`}
-          onClick={() => handleReaction("like")}
+          className={`comment-btn ${comment.reaction === "like" ? "active" : ""}`}
+          onClick={() => onReact(comment.id, "like")}
         >
           👍 Like {comment.likes}
         </button>
 
         <button
-          className={`comment-btn ${reaction === "dislike" ? "active" : ""}`}
-          onClick={() => handleReaction("dislike")}
+          className={`comment-btn ${comment.reaction === "dislike" ? "active" : ""}`}
+          onClick={() => onReact(comment.id, "dislike")}
         >
           👎 Dislike {comment.dislikes}
         </button>
 
-        <span className="reply-btn">Reply</span>
+        <span className="reply-btn" onClick={toggleReplyBox}>Reply</span>
       </div>
+
+      {showReplyBox && (
+        <div className="reply-box">
+          <textarea
+            className="reply-input"
+            placeholder="Write your reply..."
+            value={replyText}
+            onChange={(e) => setReplyText(e.target.value)}
+          />
+          <div className="reply-actions">
+            <button className="submit-reply-btn">Submit</button>
+            <button className="cancel-reply-btn" onClick={toggleReplyBox}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

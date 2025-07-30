@@ -11,17 +11,62 @@ const dummyComments = Array.from({ length: 20 }, (_, i) => ({
   author: "Author X",
   date: "16 January 2021",
   content: "Hello there.",
-  likes: 10,
-  dislikes: 2
+  likes: 11,
+  dislikes: 6,
+  reaction: null // keep track of local reaction
 }));
 
 export default function PostPage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const commentsPerPage = 2;
+  const [comments, setComments] = useState(dummyComments);
 
+  const commentsPerPage = 2;
   const lastIndex = currentPage * commentsPerPage;
   const firstIndex = lastIndex - commentsPerPage;
-  const currentComments = dummyComments.slice(firstIndex, lastIndex);
+  const currentComments = comments.slice(firstIndex, lastIndex);
+
+  const handleReaction = (id, type) => {
+    setComments(prev =>
+      prev.map(comment => {
+        if (comment.id !== id) return comment;
+
+        let newLikes = comment.likes;
+        let newDislikes = comment.dislikes;
+
+        if (type === "like") {
+          if (comment.reaction === "like") {
+            newLikes--;
+            return { ...comment, likes: newLikes, reaction: null };
+          } else {
+            newLikes += 1;
+            if (comment.reaction === "dislike") newDislikes -= 1;
+            return {
+              ...comment,
+              likes: newLikes,
+              dislikes: newDislikes,
+              reaction: "like"
+            };
+          }
+        } else if (type === "dislike") {
+          if (comment.reaction === "dislike") {
+            newDislikes--;
+            return { ...comment, dislikes: newDislikes, reaction: null };
+          } else {
+            newDislikes += 1;
+            if (comment.reaction === "like") newLikes -= 1;
+            return {
+              ...comment,
+              dislikes: newDislikes,
+              likes: newLikes,
+              reaction: "dislike"
+            };
+          }
+        }
+
+        return comment;
+      })
+    );
+  };
 
   return (
     <div className="post-container">
@@ -29,11 +74,7 @@ export default function PostPage() {
         <Link to="/author" className="author-link">Author Aftab</Link>
         <p>15 January 2021</p>
 
-        <img
-          src={postImg}
-          alt="Post"
-          className="post-image"
-        />
+        <img src={postImg} alt="Post" className="post-image" />
       </div>
 
       <p className="post-content">
@@ -43,15 +84,19 @@ export default function PostPage() {
       <ReactionButtons />
 
       <div className="comments-section">
-        <h4>20 Comments</h4>
+        <h4>{comments.length} Comments</h4>
         <input className="comment-input" placeholder="You can write comment here..." />
 
         {currentComments.map(comment => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment
+            key={comment.id}
+            comment={comment}
+            onReact={handleReaction}
+          />
         ))}
 
         <Pagination
-          totalItems={dummyComments.length}
+          totalItems={comments.length}
           itemsPerPage={commentsPerPage}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

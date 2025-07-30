@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import PostPage from "./components/PostPage";
 import AuthorProfile from "./components/AuthorProfile";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<PostPage />} />
         <Route path="/author" element={<AuthorProfile />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

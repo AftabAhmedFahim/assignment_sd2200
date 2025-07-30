@@ -112,3 +112,41 @@
   margin: 15px 0;
   border-radius: 10px;
 }
+
+.reply-box {
+  margin-top: 10px;
+}
+
+.reply-input {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+.reply-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.submit-reply-btn,
+.cancel-reply-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-reply-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-reply-btn {
+  background-color: #ccc;
+}
