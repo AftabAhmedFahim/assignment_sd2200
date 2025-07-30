@@ -10,10 +10,10 @@ const dummyComments = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
   author: "Author X",
   date: "16 January 2021",
-  content: "Hello there.",
+  content: "Hello there. This is just a random comment. Check out every buttons added",
   likes: 11,
   dislikes: 6,
-  reaction: null // keep track of local reaction
+  reaction: null
 }));
 
 export default function PostPage() {
