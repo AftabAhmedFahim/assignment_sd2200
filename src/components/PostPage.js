@@ -78,13 +78,13 @@ export default function PostPage() {
       </div>
 
       <p className="post-content">
-        This is the post content with some random image. Hello.
+        Hello. This is the post content with some random image. This is for an assignment of CSE2200.
       </p>
 
       <ReactionButtons />
 
       <div className="comments-section">
-        <h4>{comments.length} Comments</h4>
+        <h4>{comments.length} Comments of the post</h4>
         <input className="comment-input" placeholder="You can write comment here..." />
 
         {currentComments.map(comment => (

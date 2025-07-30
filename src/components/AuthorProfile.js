@@ -20,6 +20,7 @@ export default function AuthorProfile() {
       />
       <h3>Hello Everyone, this is author page of Aftab.</h3>
       <h4>Aftab studies in Ahsanullah University of Science and Technology.</h4>
+      <h5>This is just a sample author page to show routing works</h5>
     </div>
   );
 }
