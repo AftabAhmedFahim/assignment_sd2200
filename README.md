@@ -5,10 +5,10 @@ This is a simple React assignment based on the given requirements. The app was c
 ## ✅ Functionalities
 
 - "Author Name" is a clickable link that takes you to the Author Profile Page (for routing check).
-- Reactions (like/dislike) on posts and comments are clickable. When one icon is clicked, the other is deactivated.
-- Pagination is implemented at the bottom using dummy data.
+- Reactions (like/dislike/love/angry/sad) on posts and comments are clickable. When one icon is clicked, the other is deactivated.
+- Pagination is implemented at the bottom using some dummy data.
 - Dummy data is used for posts and comments.
-- Basic design applied where needed.
+- Basic design is added where needed.
 
 ## 🛠 How to Run
 
@@ -18,19 +18,14 @@ This is a simple React assignment based on the given requirements. The app was c
 2. Start the project:
    npm start
 
-Then open http://localhost:3000 in your browser.
+Then open http://localhost:3000 in browser.
 
 ## 📁 Main Files
 
 - src/components/AuthorProfile.js – Author profile page
 - src/components/Comment.js – Comment component with reactions
 - src/components/Pagination.js – Handles pagination
+- src/components/PostPage.css - Styling for PostPage
 - src/components/PostPage.js – Post and comment display
 - src/components/ReactionButtons.js – Like/dislike buttons
 
-## 📤 Submission Notes
-
-- Project is pushed to GitHub.
-- At least 2 commits are made to the repo.
-- A Word file is submitted with the GitHub repo link inside.
-- Ready for demonstration during the 4th lab.
