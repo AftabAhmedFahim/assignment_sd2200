@@ -5,8 +5,12 @@ export default function Comment({ comment, onReact }) {
   const [replyText, setReplyText] = useState("");
 
   const toggleReplyBox = () => {
-    setShowReplyBox(prev => !prev);
+    setShowReplyBox((prev) => !prev);
     setReplyText(""); // reset on open/close
+  };
+
+  const handleReport = () => {
+    alert("Comment reported!");
   };
 
   return (
@@ -14,27 +18,35 @@ export default function Comment({ comment, onReact }) {
       <div className="comment-header">
         <span className="comment-author">{comment.author}</span>
         <span className="comment-date">{comment.date}</span>
-        <span className="comment-report">Report</span>
+        <span className="comment-report" onClick={handleReport}>
+          Report
+        </span>
       </div>
 
       <p>{comment.content}</p>
 
       <div className="comment-reactions">
         <button
-          className={`comment-btn ${comment.reaction === "like" ? "active" : ""}`}
+          className={`comment-btn ${
+            comment.reaction === "like" ? "active" : ""
+          }`}
           onClick={() => onReact(comment.id, "like")}
         >
           Likes {comment.likes}
         </button>
 
         <button
-          className={`comment-btn ${comment.reaction === "dislike" ? "active" : ""}`}
+          className={`comment-btn ${
+            comment.reaction === "dislike" ? "active" : ""
+          }`}
           onClick={() => onReact(comment.id, "dislike")}
         >
           Dislikes {comment.dislikes}
         </button>
 
-        <span className="reply-btn" onClick={toggleReplyBox}>Reply</span>
+        <span className="reply-btn" onClick={toggleReplyBox}>
+          Reply
+        </span>
       </div>
 
       {showReplyBox && (
@@ -47,7 +59,9 @@ export default function Comment({ comment, onReact }) {
           />
           <div className="reply-actions">
             <button className="reply-reply-btn">Reply</button>
-            <button className="cancel-reply-btn" onClick={toggleReplyBox}>Cancel</button>
+            <button className="cancel-reply-btn" onClick={toggleReplyBox}>
+              Cancel
+            </button>
           </div>
         </div>
       )}
